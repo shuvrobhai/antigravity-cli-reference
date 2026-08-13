@@ -1,0 +1,83 @@
+{
+  "$id": "hooks.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": {
+    "$ref": "#/definitions/hookGroup"
+  },
+  "definitions": {
+    "hookEntry": {
+      "additionalProperties": true,
+      "properties": {
+        "command": {
+          "description": "Script to run; receives JSON on stdin, emits JSON on stdout",
+          "type": "string"
+        },
+        "timeout": {
+          "description": "Timeout in seconds; non-zero exit from PreToolUse cancels execution",
+          "type": "number"
+        },
+        "type": {
+          "description": "Hook type, e.g. \"command\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "hookGroup": {
+      "additionalProperties": true,
+      "properties": {
+        "PostInvocation": {
+          "$ref": "#/definitions/matcherList",
+          "description": "After model invocation"
+        },
+        "PostToolUse": {
+          "$ref": "#/definitions/matcherList",
+          "description": "After tool completion"
+        },
+        "PreInvocation": {
+          "$ref": "#/definitions/matcherList",
+          "description": "Before model call"
+        },
+        "PreToolUse": {
+          "$ref": "#/definitions/matcherList",
+          "description": "Before tool execution"
+        },
+        "Stop": {
+          "$ref": "#/definitions/matcherList",
+          "description": "When execution terminates"
+        },
+        "enabled": {
+          "default": true,
+          "description": "false disables without removing",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "matcherEntry": {
+      "additionalProperties": true,
+      "properties": {
+        "hooks": {
+          "items": {
+            "$ref": "#/definitions/hookEntry"
+          },
+          "type": "array"
+        },
+        "matcher": {
+          "description": "Tool matcher: \"\" or \"*\" matches all, \"run_command\" exact, \"run_command|view_file\" either, \"browser_.*\" regex prefix",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "matcherList": {
+      "items": {
+        "$ref": "#/definitions/matcherEntry"
+      },
+      "type": "array"
+    }
+  },
+  "description": "Projection of the documented hook surface (extensibility.hooks in the knowledge file). Root is a mapping of hook-group names; each group carries the documented event arrays. Unknown group keys are allowed (community aliases like AfterToolUse are unresolved).",
+  "title": "Antigravity CLI hooks.json",
+  "type": "object"
+}

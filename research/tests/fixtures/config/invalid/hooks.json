@@ -1,0 +1,12 @@
+{
+  "bad-hook": {
+    "PreToolUse": [
+      {
+        "matcher": 42,
+        "hooks": [
+          { "command": "./scripts/check.sh", "timeout": "ten" }
+        ]
+      }
+    ]
+  }
+}

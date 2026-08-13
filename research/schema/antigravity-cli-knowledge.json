@@ -1,0 +1,3225 @@
+{
+  "product": {
+    "name": "Google Antigravity CLI",
+    "binary": "agy",
+    "family": [
+      {
+        "name": "Antigravity 2.0",
+        "interface": "Desktop GUI",
+        "description": "Command center for local agents, projects, workspaces, scheduled tasks"
+      },
+      {
+        "name": "Antigravity IDE",
+        "interface": "IDE (VS Code fork)",
+        "description": "Agentic IDE with agent manager, artifacts, codebase understanding"
+      },
+      {
+        "name": "Antigravity CLI",
+        "interface": "Terminal (agy)",
+        "description": "Terminal-first surface for agents, shell execution, background subagents"
+      },
+      {
+        "name": "Antigravity SDK",
+        "interface": "Python API",
+        "description": "Programmatic integration, custom agent prototyping, automated evaluations"
+      }
+    ],
+    "language": "Go",
+    "optimized_model": "Gemini 3.5 Flash",
+    "architecture": "Asynchronous-first: subagents run in background, terminal always ready",
+    "config_tree_root": "~/.gemini",
+    "desktop_binary": "antigravity",
+    "docs_base": "https://antigravity.google/docs",
+    "offline_docs_mirror": "../google-antigravity-docs/",
+    "system_requirements": {
+      "macos": "macOS 12 (Monterey) minimum; Apple Silicon only (x86 not supported)",
+      "windows": "Windows 10 (64-bit)",
+      "linux": "glibc >= 2.28, glibcxx >= 3.4.25 (Ubuntu 20, Debian 10, Fedora 36, RHEL 8)"
+    },
+    "migration_from_gemini_cli": "As of 2026-06-18, Gemini Code Assist IDE extensions and Gemini CLI stopped serving consumer tiers; enterprise unaffected",
+    "source": "DOCS",
+    "confidence": "A"
+  },
+  "version": "1.1.0",
+  "last_verified": "2026-08-11",
+  "legend": {
+    "source_tiers": {
+      "DOCS": "antigravity.google/docs/* \u2014 primary authority",
+      "GOOGLE": "Other Google-owned sources (codelabs, geminicli.com, cloud.google.com) \u2014 may lag or reflect legacy Gemini CLI behavior",
+      "PROTOCOL": "modelcontextprotocol.io \u2014 MCP specification",
+      "COMMUNITY": "Third-party sources \u2014 treat as supplementary intelligence"
+    },
+    "confidence": {
+      "A": "Confirmed by sources \u2014 safe to rely on",
+      "B": "Reasonable inference \u2014 validate before production reliance",
+      "C": "Requires independent verification \u2014 do not assert"
+    }
+  },
+  "models": {
+    "_description": "Available reasoning models by subscription tier.",
+    "entries": [
+      {
+        "model": "Gemini 3.6 Flash",
+        "free_and_ai_plus": true,
+        "ai_pro": true,
+        "ai_ultra": true,
+        "enterprise": true,
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "model": "Gemini 3.5 Flash",
+        "free_and_ai_plus": true,
+        "ai_pro": true,
+        "ai_ultra": true,
+        "enterprise": true,
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "model": "Gemini 3.1 Pro",
+        "free_and_ai_plus": true,
+        "ai_pro": true,
+        "ai_ultra": true,
+        "enterprise": true,
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "model": "Claude Sonnet 4.6 (thinking)",
+        "free_and_ai_plus": true,
+        "ai_pro": true,
+        "ai_ultra": true,
+        "enterprise": false,
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "model": "Claude Opus 4.6 (thinking)",
+        "free_and_ai_plus": true,
+        "ai_pro": true,
+        "ai_ultra": true,
+        "enterprise": false,
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "model": "GPT-OSS-120b",
+        "free_and_ai_plus": true,
+        "ai_pro": true,
+        "ai_ultra": true,
+        "enterprise": false,
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "model": "Nano Banana 2",
+        "note": "Used internally for generative image tasks",
+        "source": "GOOGLE",
+        "confidence": "B"
+      }
+    ],
+    "model_slugs": [
+      "gemini-3.6-flash-high",
+      "gemini-3.6-flash-medium",
+      "gemini-3.5-flash-medium",
+      "gemini-3.1-pro-high",
+      "claude-sonnet-4-6"
+    ],
+    "behavior": "Model selection is sticky within a conversation",
+    "source": "DOCS",
+    "confidence": "A"
+  },
+  "paths": {
+    "_description": "Every documented path. scope: user | workspace | system | install | legacy | app.",
+    "entries": [
+      {
+        "path": "~/.gemini/antigravity-cli/settings.json",
+        "purpose": "User preferences",
+        "scope": "user",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "path": "~/.gemini/antigravity-cli/keybindings.json",
+        "purpose": "Keybinding overrides",
+        "scope": "user",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "path": "~/.gemini/antigravity-cli/cache/last_conversations.json",
+        "purpose": "Session cache",
+        "scope": "user",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "path": "~/.gemini/antigravity-cli/cli.log",
+        "purpose": "Diagnostic log",
+        "scope": "user",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "path": "~/.gemini/antigravity-cli/updater/update.lock",
+        "purpose": "Self-updater advisory lock",
+        "scope": "user",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "path": "~/.gemini/antigravity-cli/updater/last_check.timestamp",
+        "purpose": "Self-updater 15-min TTL debounce marker",
+        "scope": "user",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "path": "~/.gemini/antigravity-cli/brain/<conversation_id>/.system_generated/logs/transcript.jsonl",
+        "purpose": "Conversation transcript (JSONL; see transcript_schema)",
+        "scope": "user",
+        "source": "DOCS",
+        "confidence": "A",
+        "verified_hands_on": "2026-08-11"
+      },
+      {
+        "path": "~/.gemini/antigravity-cli/brain/<conversation_id>/.system_generated/logs/transcript_full.jsonl",
+        "purpose": "Full transcript (native-typed tool args)",
+        "scope": "user",
+        "source": "DOCS",
+        "confidence": "A",
+        "verified_hands_on": "2026-08-11"
+      },
+      {
+        "path": "~/.gemini/antigravity-cli/brain/<conversation_id>/scratch/",
+        "purpose": "Scratch directory",
+        "scope": "user",
+        "source": "DOCS",
+        "confidence": "A",
+        "verified_hands_on": "2026-08-11"
+      },
+      {
+        "path": "~/.gemini/antigravity-cli/brain/<conversation_id>/.user_uploaded/",
+        "purpose": "User-uploaded files",
+        "scope": "user",
+        "source": "DOCS",
+        "confidence": "A",
+        "verified_hands_on": "2026-08-11"
+      },
+      {
+        "path": "~/.gemini/antigravity-cli/conversations/<conversation_id>.db",
+        "purpose": "Conversation store (SQLite; -shm/-wal sidecars)",
+        "scope": "user",
+        "source": "DOCS",
+        "confidence": "A",
+        "verified_hands_on": "2026-08-11"
+      },
+      {
+        "path": "~/.gemini/antigravity-cli/presence/<conversation_id>.lock",
+        "purpose": "Presence lock",
+        "scope": "user",
+        "source": "DOCS",
+        "confidence": "A",
+        "verified_hands_on": "2026-08-11"
+      },
+      {
+        "path": "~/.gemini/tmp/ctx_<conversation_id>.json",
+        "purpose": "Context temp file",
+        "scope": "user",
+        "source": "DOCS",
+        "confidence": "A",
+        "verified_hands_on": "2026-08-11"
+      },
+      {
+        "path": "~/.gemini/config/skills/<name>/SKILL.md",
+        "purpose": "Global skills",
+        "scope": "user",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "path": "~/.gemini/config/mcp_config.json",
+        "purpose": "Global MCP servers",
+        "scope": "user",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "path": "~/.gemini/config/hooks.json",
+        "purpose": "Global hooks",
+        "scope": "user",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "path": "~/.gemini/config/plugins/<name>/",
+        "purpose": "Global plugins",
+        "scope": "user",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "path": "~/.gemini/config/agents/<name>.md",
+        "purpose": "Global agents",
+        "scope": "user",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "path": "~/.gemini/GEMINI.md",
+        "purpose": "Global context rules",
+        "scope": "user",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "path": ".agents/skills/<name>/SKILL.md",
+        "purpose": "Workspace skills (also supports .agent/skills singular, backward compat)",
+        "scope": "workspace",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "path": ".agents/mcp_config.json",
+        "purpose": "Workspace MCP servers",
+        "scope": "workspace",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "path": ".agents/hooks.json",
+        "purpose": "Workspace hooks",
+        "scope": "workspace",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "path": ".agents/plugins/<name>/",
+        "purpose": "Workspace plugins (also _agents/plugins/)",
+        "scope": "workspace",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "path": ".agents/agents/<name>.md",
+        "purpose": "Workspace agents (or <name>/agent.md)",
+        "scope": "workspace",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "path": ".agents/rules/",
+        "purpose": "Workspace rules (also .agent/rules singular, backward compat)",
+        "scope": "workspace",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "path": "GEMINI.md",
+        "purpose": "Workspace context rules",
+        "scope": "workspace",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "path": "AGENTS.md",
+        "purpose": "Workspace agent rules",
+        "scope": "workspace",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "path": "~/.gemini/antigravity/",
+        "purpose": "Desktop app data (CLI also references this tree for shared state, e.g. MCP OAuth tokens)",
+        "scope": "app",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "path": "~/.gemini/antigravity/mcp_oauth_tokens.json",
+        "purpose": "MCP OAuth tokens (auto-refresh on expiry, auto-remove on invalidation)",
+        "scope": "app",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "path": "~/.gemini/antigravity/brain/...",
+        "purpose": "Desktop brain. NOTE: official CLI statusline example shows this path, but the CLI's real transcript path (verified 2026-08-11) is ~/.gemini/antigravity-cli/brain/... \u2014 docs example is stale",
+        "scope": "app",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "path": "/etc/gemini-cli/system-defaults.json",
+        "purpose": "System defaults (Linux; Gemini CLI)",
+        "scope": "system",
+        "source": "GOOGLE",
+        "confidence": "B"
+      },
+      {
+        "path": "C:\\ProgramData\\gemini-cli\\system-defaults.json",
+        "purpose": "System defaults (Windows; Gemini CLI)",
+        "scope": "system",
+        "source": "GOOGLE",
+        "confidence": "B"
+      },
+      {
+        "path": "/Library/Application Support/GeminiCli/system-defaults.json",
+        "purpose": "System defaults (macOS; Gemini CLI)",
+        "scope": "system",
+        "source": "GOOGLE",
+        "confidence": "B"
+      },
+      {
+        "path": "/etc/gemini-cli/settings.json",
+        "purpose": "System settings (Linux; Gemini CLI)",
+        "scope": "system",
+        "source": "GOOGLE",
+        "confidence": "B"
+      },
+      {
+        "path": "C:\\ProgramData\\gemini-cli\\settings.json",
+        "purpose": "System settings (Windows; Gemini CLI)",
+        "scope": "system",
+        "source": "GOOGLE",
+        "confidence": "B"
+      },
+      {
+        "path": "/Library/Application Support/GeminiCli/settings.json",
+        "purpose": "System settings (macOS; Gemini CLI)",
+        "scope": "system",
+        "source": "GOOGLE",
+        "confidence": "B"
+      },
+      {
+        "path": "~/.config/gcloud/application_default_credentials.json",
+        "purpose": "Google ADC credentials (gcloud auth application-default login)",
+        "scope": "system",
+        "source": "GOOGLE",
+        "confidence": "A"
+      },
+      {
+        "path": "~/.local/bin",
+        "purpose": "agy install path (macOS/Linux)",
+        "scope": "install",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "path": "C:\\Users\\<Username>\\AppData\\Local\\agy\\bin",
+        "purpose": "agy install path (Windows binary)",
+        "scope": "install",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "path": "C:\\Program Files\\Google\\antigravity-cli",
+        "purpose": "Windows PATH entry (per troubleshooting docs)",
+        "scope": "install",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "path": "~/.gemini/settings.json",
+        "purpose": "Gemini CLI user settings (legacy; migrated to ~/.gemini/antigravity-cli/settings.json)",
+        "scope": "legacy",
+        "source": "GOOGLE",
+        "confidence": "A"
+      },
+      {
+        "path": "~/.gemini/skills/",
+        "purpose": "Gemini CLI global skills (legacy; migrated to ~/.gemini/config/skills/)",
+        "scope": "legacy",
+        "source": "GOOGLE",
+        "confidence": "A"
+      },
+      {
+        "path": ".gemini/skills/",
+        "purpose": "Gemini CLI workspace skills (legacy; migrated to .agents/skills/)",
+        "scope": "legacy",
+        "source": "GOOGLE",
+        "confidence": "A"
+      },
+      {
+        "path": "~/.gemini/antigravity-cli/statusline.sh",
+        "purpose": "Example status line script location (official GitHub example)",
+        "scope": "user",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "path": "~/Library/Logs/Antigravity/language_server.log",
+        "purpose": "Desktop app diagnostic log",
+        "scope": "app",
+        "source": "DOCS",
+        "confidence": "A"
+      }
+    ]
+  },
+  "config_keys": {
+    "_description": "settings.json keys with defaults and enums. category groups them.",
+    "entries": [
+      {
+        "key": "adminPolicyPaths",
+        "category": "general",
+        "type": "array",
+        "default": [],
+        "note": "additional admin policy files; requires restart",
+        "source": "GOOGLE",
+        "confidence": "B"
+      },
+      {
+        "key": "allowNonWorkspaceAccess",
+        "category": "safety",
+        "type": "boolean",
+        "default": false,
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "key": "altScreenMode",
+        "category": "display",
+        "type": "string",
+        "default": "default",
+        "enum": [
+          "default",
+          "always",
+          "never"
+        ],
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "key": "artifactReviewPolicy",
+        "category": "safety",
+        "type": "string",
+        "default": "asks-for-review",
+        "enum": [
+          "asks-for-review",
+          "agent-decides",
+          "always-proceed"
+        ],
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "key": "colorScheme",
+        "category": "display",
+        "type": "string",
+        "default": "terminal",
+        "enum": [
+          "light",
+          "solarized light",
+          "colorblind-friendly light",
+          "dark",
+          "solarized dark",
+          "colorblind-friendly dark",
+          "tokyo night",
+          "terminal"
+        ],
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "key": "editor",
+        "category": "editor",
+        "type": "string",
+        "default": "auto",
+        "enum": [
+          "auto",
+          "vim",
+          "emacs",
+          "nano",
+          "<any binary>"
+        ],
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "key": "editorMode",
+        "category": "editor",
+        "type": "string",
+        "default": "default",
+        "enum": [
+          "default",
+          "vim"
+        ],
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "key": "enableTelemetry",
+        "category": "behavior",
+        "type": "boolean",
+        "default": true,
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "key": "enableTerminalSandbox",
+        "category": "safety",
+        "type": "boolean",
+        "default": false,
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "key": "general.openEditorInNewWindow",
+        "category": "general",
+        "type": "boolean",
+        "default": false,
+        "note": "Gemini CLI confirmed; likely inherited",
+        "source": "GOOGLE",
+        "confidence": "B"
+      },
+      {
+        "key": "general.preferredEditor",
+        "category": "general",
+        "type": "enum",
+        "default": "undefined",
+        "enum": [
+          "vscode",
+          "vscodium",
+          "windsurf",
+          "cursor",
+          "zed",
+          "antigravity",
+          "sublimetext",
+          "lapce",
+          "nova",
+          "bbedit",
+          "vim",
+          "neovim",
+          "emacs",
+          "hx",
+          "emacsclient",
+          "micro"
+        ],
+        "note": "Gemini CLI confirmed; likely inherited by Antigravity",
+        "source": "GOOGLE",
+        "confidence": "B"
+      },
+      {
+        "key": "general.vimMode",
+        "category": "general",
+        "type": "boolean",
+        "default": false,
+        "note": "Gemini CLI confirmed; likely inherited",
+        "source": "GOOGLE",
+        "confidence": "B"
+      },
+      {
+        "key": "model",
+        "category": "behavior",
+        "type": "string",
+        "note": "default model for sessions; value format matches the --model flag (human-readable name + effort tier, e.g. \"Gemini 3.5 Flash (Low)\"); not listed on the antigravity.google settings page \u2014 discovered via config diff 2026-08-11 and confirmed hands-on: a headless run with no --model flag resolved Model Selection to the configured value",
+        "source": "GOOGLE",
+        "confidence": "A"
+      },
+      {
+        "key": "notifications",
+        "category": "display",
+        "type": "boolean",
+        "default": false,
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "key": "permissions.allow",
+        "category": "permissions",
+        "type": "string[]",
+        "note": "allowlist rules, e.g. \"command(git)\"",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "key": "permissions.ask",
+        "category": "permissions",
+        "type": "string[]",
+        "note": "asklist rules",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "key": "permissions.deny",
+        "category": "permissions",
+        "type": "string[]",
+        "note": "denylist rules",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "key": "policyPaths",
+        "category": "general",
+        "type": "array",
+        "default": [],
+        "note": "additional policy files; requires restart",
+        "source": "GOOGLE",
+        "confidence": "B"
+      },
+      {
+        "key": "runningLightSpeed",
+        "category": "behavior",
+        "type": "string",
+        "default": "medium",
+        "enum": [
+          "fast",
+          "medium",
+          "slow",
+          "off"
+        ],
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "key": "showFeedbackSurvey",
+        "category": "display",
+        "type": "boolean",
+        "default": true,
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "key": "showTips",
+        "category": "display",
+        "type": "boolean",
+        "default": true,
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "key": "statusLine",
+        "category": "custom-scripts",
+        "type": "object",
+        "note": "{\"type\": \"command\", \"command\": \"<path>\", \"padding\": 0, \"enabled\": true, \"stack_with_default\": false}",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "key": "title",
+        "category": "custom-scripts",
+        "type": "object",
+        "note": "{\"type\": \"command\", \"command\": \"<path>\"}",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "key": "toolPermission",
+        "category": "safety",
+        "type": "string",
+        "default": "request-review",
+        "enum": [
+          "request-review",
+          "proceed-in-sandbox",
+          "always-proceed",
+          "strict"
+        ],
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "key": "trustedWorkspaces",
+        "category": "safety",
+        "type": "string[]",
+        "default": [],
+        "note": "whitelist of authorized repository paths",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "key": "ui.footer.items",
+        "category": "display",
+        "type": "string[]",
+        "note": "footer display widgets (model-name, agent-profile, agent-state, context-used, token-count, artifacts, quota, quota-weekly, project-path)",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "key": "ui.language",
+        "category": "display",
+        "type": "string",
+        "default": "us",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "key": "useG1Credits",
+        "category": "behavior",
+        "type": "boolean",
+        "default": false,
+        "note": "external builds only",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "key": "verbosity",
+        "category": "behavior",
+        "type": "string",
+        "default": "high",
+        "enum": [
+          "high",
+          "low"
+        ],
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "key": "vimInsertFirst",
+        "category": "editor",
+        "type": "boolean",
+        "default": false,
+        "note": "requires editorMode: vim",
+        "source": "DOCS",
+        "confidence": "A"
+      }
+    ],
+    "env_vars": [
+      {
+        "var": "AGY_CLI_DISABLE_AUTO_UPDATE",
+        "value": "true",
+        "purpose": "Disable self-updater",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "var": "GEMINI_CLI_SYSTEM_DEFAULTS_PATH",
+        "value": "<path>",
+        "purpose": "Override system defaults file location (Gemini CLI)",
+        "source": "GOOGLE",
+        "confidence": "B"
+      },
+      {
+        "var": "GEMINI_CLI_SYSTEM_SETTINGS_PATH",
+        "value": "<path>",
+        "purpose": "Override system settings file location (Gemini CLI)",
+        "source": "GOOGLE",
+        "confidence": "B"
+      }
+    ],
+    "interpolation": {
+      "syntax": [
+        "$VAR_NAME",
+        "${VAR_NAME}",
+        "${VAR_NAME:-DEFAULT_VALUE}"
+      ],
+      "note": "Each plugin can have its own .env file",
+      "source": "GOOGLE",
+      "confidence": "B"
+    },
+    "precedence": [
+      {
+        "level": 1,
+        "source": "Default values",
+        "note": "Hardcoded"
+      },
+      {
+        "level": 2,
+        "source": "System defaults file",
+        "note": "Overridable via GEMINI_CLI_SYSTEM_DEFAULTS_PATH"
+      },
+      {
+        "level": 3,
+        "source": "User settings",
+        "note": "~/.gemini/antigravity-cli/settings.json (Antigravity)"
+      },
+      {
+        "level": 4,
+        "source": "Project settings",
+        "note": ".gemini/settings.json"
+      },
+      {
+        "level": 5,
+        "source": "System settings",
+        "note": "Overridable via GEMINI_CLI_SYSTEM_SETTINGS_PATH"
+      },
+      {
+        "level": 6,
+        "source": "Environment variables",
+        "note": "Shell variables, .env files"
+      },
+      {
+        "level": 7,
+        "source": "Command-line arguments",
+        "note": "e.g. agy --sandbox --model=..."
+      }
+    ],
+    "sparse_persistence": "CLI writes only values differing from system defaults; updated defaults auto-inherited",
+    "context_rule_files": [
+      {
+        "file": "GEMINI.md",
+        "scope": "workspace",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "file": "AGENTS.md",
+        "scope": "workspace",
+        "source": "DOCS",
+        "confidence": "A"
+      },
+      {
+        "file": "~/.gemini/GEMINI.md",
+        "scope": "user",
+        "source": "DOCS",
+        "confidence": "A"
+      }
+    ]
+  },
+  "keybindings": {
+    "_description": "TUI keybinding inventory (keybindings.json maps action strings to hotkey arrays; empty array disables; delete file to restore defaults).",
+    "entries": [
+      {
+        "action": "cli.escape",
+        "default": "Escape",
+        "category": "global"
+      },
+      {
+        "action": "cli.exit",
+        "default": "Ctrl+C (empty prompt)",
+        "category": "global"
+      },
+      {
+        "action": "cli.clear_screen",
+        "default": "Ctrl+L",
+        "category": "global"
+      },
+      {
+        "action": "prompt.submit",
+        "default": "Enter",
+        "category": "prompt"
+      },
+      {
+        "action": "prompt.newline",
+        "default": "Shift+Enter, Ctrl+J",
+        "category": "prompt"
+      },
+      {
+        "action": "edit.open_editor",
+        "default": "Ctrl+G",
+        "category": "prompt"
+      },
+      {
+        "action": "clipboard.paste_image",
+        "default": "Ctrl+V",
+        "category": "prompt"
+      },
+      {
+        "action": "prompt.insert_file",
+        "default": "@",
+        "category": "prompt"
+      },
+      {
+        "action": "nav.scroll_line",
+        "default": "Up/Down",
+        "category": "navigation"
+      },
+      {
+        "action": "nav.scroll_half_page",
+        "default": "Shift+Page Up/Down, Ctrl+U/D",
+        "category": "navigation"
+      },
+      {
+        "action": "nav.scroll_top",
+        "default": "Home",
+        "category": "navigation"
+      },
+      {
+        "action": "nav.scroll_bottom",
+        "default": "End",
+        "category": "navigation"
+      },
+      {
+        "action": "nav.focus_top",
+        "default": ">",
+        "category": "navigation"
+      },
+      {
+        "action": "nav.focus_bottom",
+        "default": "<",
+        "category": "navigation"
+      },
+      {
+        "action": "nav.tab_forward",
+        "default": "Tab",
+        "category": "navigation"
+      },
+      {
+        "action": "nav.tab_backward",
+        "default": "Shift+Tab",
+        "category": "navigation"
+      },
+      {
+        "action": "confirm.approve",
+        "default": "y",
+        "category": "confirmations"
+      },
+      {
+        "action": "confirm.reject",
+        "default": "n",
+        "category": "confirmations"
+      },
+      {
+        "action": "confirm.approve_all",
+        "default": "Shift+A",
+        "category": "confirmations"
+      },
+      {
+        "action": "confirm.reject_all",
+        "default": "Shift+R",
+        "category": "confirmations"
+      },
+      {
+        "action": "confirm.preview",
+        "default": "p",
+        "category": "confirmations"
+      },
+      {
+        "action": "nav.confirm",
+        "default": "Enter",
+        "category": "confirmations"
+      },
+      {
+        "action": "nav.escape",
+        "default": "Escape",
+        "category": "confirmations"
+      },
+      {
+        "action": "nav.switch_button",
+        "default": "Tab",
+        "category": "confirmations"
+      }
+    ],
+    "note": "Section 12 of the research doc references Ctrl+R for the artifact picker, but it is absent from this inventory \u2014 unresolved discrepancy",
+    "source": "DOCS",
+    "confidence": "A"
+  },
+  "statusline_payload": {
+    "_description": "JSON payload piped to custom status line / title scripts via stdin. All fields optional unless noted.",
+    "fields": [
+      {
+        "field": "cwd",
+        "type": "string",
+        "description": "Current working directory"
+      },
+      {
+        "field": "session_id",
+        "type": "string",
+        "description": "Backward-compatibility alias for conversation_id"
+      },
+      {
+        "field": "conversation_id",
+        "type": "string",
+        "description": "Current unique conversation ID"
+      },
+      {
+        "field": "transcript_path",
+        "type": "string",
+        "description": "Absolute path to active transcript log (optional)"
+      },
+      {
+        "field": "model",
+        "type": "object",
+        "description": "{id, display_name}"
+      },
+      {
+        "field": "workspace",
+        "type": "object",
+        "description": "{current_dir, project_dir}"
+      },
+      {
+        "field": "version",
+        "type": "string",
+        "description": "CLI version"
+      },
+      {
+        "field": "context_window",
+        "type": "object",
+        "description": "total_input_tokens, total_output_tokens, context_window_size, used_percentage, remaining_percentage, current_usage {input_tokens, output_tokens, cache_creation_input_tokens, cache_read_input_tokens}"
+      },
+      {
+        "field": "exceeds_200k_tokens",
+        "type": "bool|null",
+        "description": "Context > 200k flag (null before first API call)"
+      },
+      {
+        "field": "product",
+        "type": "string",
+        "description": "Application name (e.g. antigravity)"
+      },
+      {
+        "field": "quota",
+        "type": "object",
+        "description": "Maps model/bucket IDs (e.g. gemini-weekly) to {remaining_fraction, reset_time, reset_in_seconds}"
+      },
+      {
+        "field": "agent_state",
+        "type": "string",
+        "description": "idle, thinking, working, tool_use, initializing"
+      },
+      {
+        "field": "vcs",
+        "type": "object",
+        "description": "{type: git|jj|hg, branch, client, dirty}"
+      },
+      {
+        "field": "sandbox",
+        "type": "object",
+        "description": "{enabled, allow_network}"
+      },
+      {
+        "field": "artifact_count",
+        "type": "int",
+        "description": "Artifacts produced"
+      },
+      {
+        "field": "plan_tier",
+        "type": "string",
+        "description": "Subscription tier"
+      },
+      {
+        "field": "email",
+        "type": "string",
+        "description": "Authenticated user"
+      },
+      {
+        "field": "pending_input_count",
+        "type": "int",
+        "description": "Queued messages"
+      },
+      {
+        "field": "tool_confirmation_pending",
+        "type": "bool",
+        "description": "Confirmation dialog showing"
+      },
+      {
+        "field": "task_count",
+        "type": "int",
+        "description": "Background tasks"
+      },
+      {
+        "field": "terminal_width",
+        "type": "int",
+        "description": "Terminal width"
+      },
+      {
+        "field": "execution_mode",
+        "type": "string",
+        "description": "planning, fast"
+      },
+      {
+        "field": "vim",
+        "type": "object",
+        "description": "{mode: NORMAL, INSERT, VISUAL, VISUAL LINE} \u2014 only when vim editor enabled"
+      }
+    ],
+    "source": "DOCS",
+    "confidence": "A"
+  },
+  "permissions": {
+    "macro_modes": [
+      {
+        "mode": "request-review",
+        "behavior": "Prompts for write/bash/web tools (default)"
+      },
+      {
+        "mode": "proceed-in-sandbox",
+        "behavior": "Auto-runs if sandboxed; otherwise prompts"
+      },
+      {
+        "mode": "strict",
+        "behavior": "Prompts for all non-read tools"
+      },
+      {
+        "mode": "always-proceed",
+        "behavior": "No prompts"
+      }
+    ],
+    "fine_grained": {
+      "example": {
+        "permissions": {
+          "allow": [
+            "command(git)",
+            "read_file(/var/log/app)"
+          ],
+          "deny": [
+            "command(rm -rf)",
+            "command(sudo)"
+          ],
+          "ask": [
+            "command(*)",
+            "execute_url(aws.amazon.com)"
+          ]
+        }
+      },
+      "precedence": "Deny > Ask > Allow"
+    },
+    "action_types": [
+      {
+        "action": "read_file",
+        "target": "path or *",
+        "default": "Ask (workspace auto-allowed)"
+      },
+      {
+        "action": "write_file",
+        "target": "path or *",
+        "default": "Ask (workspace auto-allowed)"
+      },
+      {
+        "action": "read_url",
+        "target": "domain or *",
+        "default": "Ask"
+      },
+      {
+        "action": "execute_url",
+        "target": "domain or *",
+        "default": "Ask"
+      },
+      {
+        "action": "command",
+        "target": "prefix/regex or *",
+        "default": "Ask"
+      },
+      {
+        "action": "unsandboxed",
+        "target": "prefix or *",
+        "default": "Ask"
+      },
+      {
+        "action": "mcp",
+        "target": "server/tool or *",
+        "default": "Ask"
+      }
+    ],
+    "implicit_rules": [
+      "Write implies Read (allowing write_file auto-grants read_file)",
+      "Deny Read implies Deny Write",
+      "Cross-platform path normalization applied"
+    ],
+    "default_behaviors": [
+      "Workspace read/write = auto-allowed",
+      "Web browsing = Ask",
+      "Everything else = Ask"
+    ],
+    "browser_security": {
+      "denylist": "Server-side (Google BadUrlsChecker), checked via RPC. Server unavailable = deny. Cannot be overridden.",
+      "allowlist": "Local text file, initialized with localhost. Denylist takes precedence."
+    },
+    "subagent_inheritance": "Subagents inherit terminal command prefixes, file scopes, and sandbox settings; authorization requests bubble up to main UI",
+    "source": "DOCS",
+    "confidence": "A"
+  },
+  "commands": {
+    "_description": "35 confirmed slash commands.",
+    "entries": [
+      {
+        "command": "/exit",
+        "aliases": [
+          "/quit"
+        ],
+        "description": "Close TUI",
+        "category": "core"
+      },
+      {
+        "command": "/resume",
+        "aliases": [
+          "/switch",
+          "/conversation"
+        ],
+        "description": "Browse, search, resume past conversations",
+        "category": "conversations"
+      },
+      {
+        "command": "/fork",
+        "aliases": [
+          "/branch"
+        ],
+        "description": "Clone conversation or fork to different project",
+        "category": "conversations"
+      },
+      {
+        "command": "/rename",
+        "aliases": [],
+        "description": "Rename session",
+        "category": "conversations"
+      },
+      {
+        "command": "/rewind",
+        "aliases": [
+          "/undo"
+        ],
+        "description": "Roll back to previous message",
+        "category": "conversations"
+      },
+      {
+        "command": "/config",
+        "aliases": [
+          "/settings"
+        ],
+        "description": "Interactive settings editor",
+        "category": "configurations"
+      },
+      {
+        "command": "/model",
+        "aliases": [],
+        "description": "Choose reasoning model",
+        "category": "configurations"
+      },
+      {
+        "command": "/fast",
+        "aliases": [],
+        "description": "Enable fast mode",
+        "category": "configurations"
+      },
+      {
+        "command": "/planning",
+        "aliases": [],
+        "description": "Enable planning mode",
+        "category": "configurations"
+      },
+      {
+        "command": "/keybindings",
+        "aliases": [],
+        "description": "Keyboard shortcut editor",
+        "category": "configurations"
+      },
+      {
+        "command": "/agents",
+        "aliases": [],
+        "description": "Agent selection, discovery, subagent monitoring",
+        "category": "agent-control"
+      },
+      {
+        "command": "/browser",
+        "aliases": [],
+        "description": "Open sandboxed Chrome browser",
+        "category": "agent-control"
+      },
+      {
+        "command": "/goal",
+        "aliases": [],
+        "description": "Run until task is completely finished without intermediate input",
+        "category": "agent-control"
+      },
+      {
+        "command": "/grill-me",
+        "aliases": [],
+        "description": "Ask clarifying questions before implementing to align on plan details",
+        "category": "agent-control"
+      },
+      {
+        "command": "/schedule",
+        "aliases": [],
+        "description": "Run instruction as one-time timer or recurring schedule",
+        "category": "agent-control"
+      },
+      {
+        "command": "/codesearch",
+        "aliases": [
+          "/cs",
+          "/search"
+        ],
+        "description": "Interactive code search with regex and line commenting",
+        "category": "tools-and-tasks"
+      },
+      {
+        "command": "/hooks",
+        "aliases": [],
+        "description": "Browse active hooks",
+        "category": "tools-and-tasks"
+      },
+      {
+        "command": "/mcp",
+        "aliases": [],
+        "description": "Interactive MCP manager",
+        "category": "tools-and-tasks"
+      },
+      {
+        "command": "/permissions",
+        "aliases": [],
+        "description": "Fine-grained permissions editor",
+        "category": "tools-and-tasks"
+      },
+      {
+        "command": "/skills",
+        "aliases": [],
+        "description": "Browse loaded skills",
+        "category": "tools-and-tasks"
+      },
+      {
+        "command": "/tasks",
+        "aliases": [],
+        "description": "Task Manager Panel for background logs",
+        "category": "tools-and-tasks"
+      },
+      {
+        "command": "/add-dir",
+        "aliases": [],
+        "description": "Add working directory",
+        "category": "utilities"
+      },
+      {
+        "command": "/artifact",
+        "aliases": [],
+        "description": "Open artifact picker",
+        "category": "utilities"
+      },
+      {
+        "command": "/btw",
+        "aliases": [],
+        "description": "Provide additional context",
+        "category": "utilities"
+      },
+      {
+        "command": "/clear",
+        "aliases": [],
+        "description": "Clear terminal history",
+        "category": "utilities"
+      },
+      {
+        "command": "/context",
+        "aliases": [],
+        "description": "Inspect memory and token usage",
+        "category": "utilities"
+      },
+      {
+        "command": "/copy",
+        "aliases": [],
+        "description": "Copy content to clipboard",
+        "category": "utilities"
+      },
+      {
+        "command": "/diff",
+        "aliases": [],
+        "description": "Workspace diff viewer",
+        "category": "utilities"
+      },
+      {
+        "command": "/open",
+        "aliases": [],
+        "description": "Open in default editor (takes <path>)",
+        "category": "utilities"
+      },
+      {
+        "command": "/feedback",
+        "aliases": [],
+        "description": "Feedback submission",
+        "category": "utilities"
+      },
+      {
+        "command": "/title",
+        "aliases": [],
+        "description": "Toggle/configure terminal titles",
+        "category": "utilities"
+      },
+      {
+        "command": "/statusline",
+        "aliases": [],
+        "description": "Configure custom status line",
+        "category": "utilities"
+      },
+      {
+        "command": "/credits",
+        "aliases": [],
+        "description": "Manage AI Premium credits",
+        "category": "account"
+      },
+      {
+        "command": "/logout",
+        "aliases": [],
+        "description": "Disconnect, purge auth tokens",
+        "category": "account"
+      },
+      {
+        "command": "/usage",
+        "aliases": [
+          "/quota"
+        ],
+        "description": "View model quota",
+        "category": "account"
+      }
+    ],
+    "special_input": [
+      {
+        "input": "! <command>",
+        "description": "Direct bash execution (shell mode)"
+      },
+      {
+        "input": "@ <path>",
+        "description": "File autocompletion overlay"
+      }
+    ],
+    "subcommands": [
+      {
+        "command": "agy models",
+        "description": "List available model slugs"
+      },
+      {
+        "command": "agy agents",
+        "description": "List available agents (global + workspace + plugin-shipped)"
+      },
+      {
+        "command": "agy plugin",
+        "description": "Manage plugins: list, import, install, uninstall, enable, disable, validate, link"
+      },
+      {
+        "command": "agy changelog",
+        "description": "Show changelog and release notes"
+      },
+      {
+        "command": "agy install",
+        "description": "Configure environment paths and shell settings"
+      },
+      {
+        "command": "agy update",
+        "description": "Update CLI"
+      }
+    ],
+    "source": "DOCS",
+    "confidence": "A"
+  },
+  "tools": {
+    "_description": "Built-in agent tool signatures (args use the documented capitalization). Conventions: args_verified=true entries carry doc/transcript-verified argument lists; args_verified=false entries are name-verified only (from the live init probe) with no invented args. description_verified=true means the description came from docs/transcripts; false means it is best-effort inference from the tool name.",
+    "entries": [
+      {
+        "name": "ask_permission",
+        "description": "Request permissions",
+        "family": "control",
+        "args_verified": true,
+        "args": [
+          {
+            "name": "Action",
+            "type": "string"
+          },
+          {
+            "name": "Target",
+            "type": "string"
+          },
+          {
+            "name": "Reason",
+            "type": "string"
+          }
+        ],
+        "description_verified": true
+      },
+      {
+        "name": "ask_question",
+        "description": "Ask the user one or more multiple-choice questions",
+        "family": "control",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "browser_click_element",
+        "description": "Click an element on the active browser page",
+        "family": "browser",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "browser_drag_pixel_to_pixel",
+        "description": "Drag from one pixel coordinate to another",
+        "family": "browser",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "browser_get_dom",
+        "description": "Retrieve the DOM structure of the active page",
+        "family": "browser",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "browser_get_network_request",
+        "description": "Get detailed info for a specific network request",
+        "family": "browser",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "browser_input",
+        "description": "Input text into a browser input field",
+        "family": "browser",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "browser_list_network_requests",
+        "description": "List network requests captured for the active page",
+        "family": "browser",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "browser_mouse_down",
+        "description": "Trigger a mouse down event at coordinates",
+        "family": "browser",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "browser_mouse_up",
+        "description": "Trigger a mouse up event at coordinates",
+        "family": "browser",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "browser_move_mouse",
+        "description": "Move the mouse to specific coordinates",
+        "family": "browser",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "browser_press_key",
+        "description": "Press a key or key combination on the page",
+        "family": "browser",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "browser_refresh_page",
+        "description": "Refresh the active browser page",
+        "family": "browser",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "browser_resize_window",
+        "description": "Resize the browser window dimensions",
+        "family": "browser",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "browser_scroll",
+        "description": "Scroll the browser window by an offset",
+        "family": "browser",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "browser_scroll_dom",
+        "description": "Scroll a specific DOM element by selector",
+        "family": "browser",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "browser_select_option",
+        "description": "Select an option from a dropdown element",
+        "family": "browser",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "browser_subagent",
+        "description": "Invoke the browser subagent",
+        "family": "browser",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "call_mcp_tool",
+        "description": "Lazy MCP tool execution",
+        "family": "execution",
+        "args_verified": true,
+        "args": [
+          {
+            "name": "ServerName",
+            "type": "string"
+          },
+          {
+            "name": "ToolName",
+            "type": "string"
+          },
+          {
+            "name": "Arguments",
+            "type": "object"
+          }
+        ],
+        "description_verified": true
+      },
+      {
+        "name": "capture_browser_console_logs",
+        "description": "Retrieve console logs from the active page",
+        "family": "browser",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "capture_browser_screenshot",
+        "description": "Take a screenshot of the active browser window",
+        "family": "browser",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "click_browser_pixel",
+        "description": "Click specific pixel coordinates on the screen",
+        "family": "browser",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "command_status",
+        "description": "Check the status of a running background command",
+        "family": "control",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "define_subagent",
+        "description": "Create transient subagent template (session-scoped)",
+        "family": "collaboration",
+        "args_verified": true,
+        "args": [],
+        "description_verified": true
+      },
+      {
+        "name": "delete_knowledge",
+        "description": "Delete a knowledge file or memory entry",
+        "family": "execution",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "execute_browser_javascript",
+        "description": "Execute arbitrary JavaScript on the active page",
+        "family": "browser",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "find_by_name",
+        "description": "Glob search",
+        "family": "search",
+        "args_verified": true,
+        "args": [
+          {
+            "name": "SearchDirectory",
+            "type": "string"
+          },
+          {
+            "name": "Pattern",
+            "type": "string"
+          },
+          {
+            "name": "Type",
+            "type": "string"
+          },
+          {
+            "name": "Excludes",
+            "type": "array"
+          },
+          {
+            "name": "Extensions",
+            "type": "array"
+          },
+          {
+            "name": "FullPath",
+            "type": "bool"
+          },
+          {
+            "name": "MaxDepth",
+            "type": "int"
+          }
+        ],
+        "description_verified": true
+      },
+      {
+        "name": "finish",
+        "description": "Mark the current goal/task as successfully completed",
+        "family": "control",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "generate_image",
+        "description": "Generate an image using the internal Nano Banana model",
+        "family": "execution",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "grep_search",
+        "description": "Text search",
+        "family": "search",
+        "args_verified": true,
+        "args": [
+          {
+            "name": "SearchPath",
+            "type": "string"
+          },
+          {
+            "name": "Query",
+            "type": "string"
+          },
+          {
+            "name": "IsRegex",
+            "type": "bool"
+          },
+          {
+            "name": "CaseInsensitive",
+            "type": "bool"
+          },
+          {
+            "name": "Includes",
+            "type": "string"
+          },
+          {
+            "name": "MatchPerLine",
+            "type": "bool"
+          }
+        ],
+        "description_verified": true
+      },
+      {
+        "name": "invoke_subagent",
+        "description": "Spawn subagent",
+        "family": "collaboration",
+        "args_verified": true,
+        "args": [
+          {
+            "name": "Subagents",
+            "type": "array",
+            "note": "each with Prompt, Role, workspace options"
+          }
+        ],
+        "description_verified": true
+      },
+      {
+        "name": "list_browser_pages",
+        "description": "List all active pages/tabs in the browser profile",
+        "family": "browser",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "list_dir",
+        "description": "List directory (DirectoryPath arg verified hands-on 2026-08-11)",
+        "family": "file",
+        "args_verified": true,
+        "args": [
+          {
+            "name": "DirectoryPath",
+            "type": "string"
+          }
+        ],
+        "description_verified": true
+      },
+      {
+        "name": "list_permissions",
+        "description": "View current grants",
+        "family": "control",
+        "args_verified": true,
+        "args": [],
+        "description_verified": true
+      },
+      {
+        "name": "list_resources",
+        "description": "List resources exposed by loaded MCP servers",
+        "family": "resources",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "manage_inbox",
+        "description": "Manage user-queued messages and system notifications",
+        "family": "collaboration",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "manage_subagents",
+        "description": "Manage background subagents",
+        "family": "collaboration",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "manage_task",
+        "description": "Background task control",
+        "family": "control",
+        "args_verified": true,
+        "args": [
+          {
+            "name": "Action",
+            "type": "enum",
+            "enum": [
+              "list",
+              "kill",
+              "status",
+              "send_input"
+            ]
+          },
+          {
+            "name": "TaskId",
+            "type": "string"
+          },
+          {
+            "name": "Input",
+            "type": "string"
+          }
+        ],
+        "description_verified": true
+      },
+      {
+        "name": "multi_replace_file_content",
+        "description": "Multiple non-contiguous edits",
+        "family": "file",
+        "args_verified": true,
+        "args": [
+          {
+            "name": "TargetFile",
+            "type": "string"
+          },
+          {
+            "name": "Instruction",
+            "type": "string"
+          },
+          {
+            "name": "Description",
+            "type": "string"
+          },
+          {
+            "name": "ReplacementChunks",
+            "type": "array"
+          },
+          {
+            "name": "TargetLintErrorIds",
+            "type": "array"
+          },
+          {
+            "name": "ArtifactMetadata",
+            "type": "object"
+          }
+        ],
+        "description_verified": true
+      },
+      {
+        "name": "notebook_edit",
+        "description": "Edit code cells in a Jupyter notebook",
+        "family": "notebook",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "notebook_execution",
+        "description": "Execute cells in a Jupyter notebook",
+        "family": "notebook",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "open_browser_url",
+        "description": "Open a URL in the browser profile",
+        "family": "browser",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "read_browser_page",
+        "description": "Read text/HTML content of the active page",
+        "family": "browser",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "read_resource",
+        "description": "Read contents of a loaded MCP resource",
+        "family": "resources",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "read_url_content",
+        "description": "Fetch URL content",
+        "family": "execution",
+        "args_verified": true,
+        "args": [
+          {
+            "name": "URL",
+            "type": "string"
+          }
+        ],
+        "description_verified": true
+      },
+      {
+        "name": "replace_file_content",
+        "description": "Replace text block",
+        "family": "file",
+        "args_verified": true,
+        "args": [
+          {
+            "name": "TargetFile",
+            "type": "string"
+          },
+          {
+            "name": "Instruction",
+            "type": "string"
+          },
+          {
+            "name": "Description",
+            "type": "string"
+          },
+          {
+            "name": "AllowMultiple",
+            "type": "bool"
+          },
+          {
+            "name": "TargetContent",
+            "type": "string"
+          },
+          {
+            "name": "ReplacementContent",
+            "type": "string"
+          },
+          {
+            "name": "StartLine",
+            "type": "int"
+          },
+          {
+            "name": "EndLine",
+            "type": "int"
+          },
+          {
+            "name": "TargetLintErrorIds",
+            "type": "array"
+          }
+        ],
+        "description_verified": true
+      },
+      {
+        "name": "run_command",
+        "description": "Execute bash",
+        "family": "execution",
+        "args_verified": true,
+        "args": [
+          {
+            "name": "CommandLine",
+            "type": "string"
+          },
+          {
+            "name": "Cwd",
+            "type": "string"
+          },
+          {
+            "name": "WaitMsBeforeAsync",
+            "type": "int"
+          },
+          {
+            "name": "RunPersistent",
+            "type": "bool"
+          },
+          {
+            "name": "RequestedTerminalID",
+            "type": "string"
+          }
+        ],
+        "description_verified": true
+      },
+      {
+        "name": "schedule",
+        "description": "Timers and cron jobs",
+        "family": "control",
+        "args_verified": true,
+        "args": [
+          {
+            "name": "DurationSeconds",
+            "type": "int"
+          },
+          {
+            "name": "CronExpression",
+            "type": "string"
+          },
+          {
+            "name": "MaxIterations",
+            "type": "int"
+          },
+          {
+            "name": "Prompt",
+            "type": "string"
+          },
+          {
+            "name": "TimerCondition",
+            "type": "string"
+          }
+        ],
+        "description_verified": true
+      },
+      {
+        "name": "search_web",
+        "description": "Web search",
+        "family": "search",
+        "args_verified": true,
+        "args": [
+          {
+            "name": "query",
+            "type": "string"
+          },
+          {
+            "name": "domain",
+            "type": "string"
+          }
+        ],
+        "description_verified": true
+      },
+      {
+        "name": "sed_file",
+        "description": "Perform regex replacements in a file",
+        "family": "file",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "send_command_input",
+        "description": "Send input text to a running background task",
+        "family": "control",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "send_message",
+        "description": "Inter-agent / subagent messaging",
+        "family": "collaboration",
+        "args_verified": true,
+        "args": [
+          {
+            "name": "Message",
+            "type": "string"
+          },
+          {
+            "name": "Recipient",
+            "type": "string"
+          }
+        ],
+        "description_verified": true
+      },
+      {
+        "name": "view_file",
+        "description": "Read file ranges",
+        "family": "file",
+        "args_verified": true,
+        "args": [
+          {
+            "name": "AbsolutePath",
+            "type": "string"
+          },
+          {
+            "name": "StartLine",
+            "type": "int"
+          },
+          {
+            "name": "EndLine",
+            "type": "int"
+          },
+          {
+            "name": "ContentOffset",
+            "type": "int"
+          },
+          {
+            "name": "IsSkillFile",
+            "type": "bool"
+          }
+        ],
+        "description_verified": true
+      },
+      {
+        "name": "wait",
+        "description": "Wait for a specified condition or duration",
+        "family": "control",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "wait_5_seconds",
+        "description": "Wait exactly 5 seconds",
+        "family": "control",
+        "args_verified": false,
+        "description_verified": false
+      },
+      {
+        "name": "write_to_file",
+        "description": "Write files",
+        "family": "file",
+        "args_verified": true,
+        "args": [
+          {
+            "name": "TargetFile",
+            "type": "string"
+          },
+          {
+            "name": "Overwrite",
+            "type": "bool"
+          },
+          {
+            "name": "CodeContent",
+            "type": "string"
+          },
+          {
+            "name": "Description",
+            "type": "string"
+          },
+          {
+            "name": "IsArtifact",
+            "type": "bool"
+          },
+          {
+            "name": "ArtifactMetadata",
+            "type": "object"
+          }
+        ],
+        "description_verified": true
+      }
+    ],
+    "source": "DOCS",
+    "confidence": "A"
+  },
+  "extensibility": {
+    "skills": {
+      "definition": "Open standard; a folder containing SKILL.md with YAML frontmatter. Agent-triggered (on-demand), unlike System Prompts (always loaded).",
+      "frontmatter": [
+        {
+          "field": "name",
+          "required": false,
+          "default": "folder name",
+          "description": "Unique identifier (lowercase, hyphens)"
+        },
+        {
+          "field": "description",
+          "required": true,
+          "description": "What the skill does and when to use it. Third person, keyword-rich."
+        }
+      ],
+      "note": "Only name + description are documented. disable-model-invocation, argument-hint, user-invocable are NOT documented (community mentions only).",
+      "paths": {
+        "global": "~/.gemini/config/skills/<skill-folder>/",
+        "workspace": "<workspace-root>/.agents/skills/<skill-folder>/",
+        "backward_compat": ".agent/skills (singular)"
+      },
+      "folder_structure": [
+        "SKILL.md (required)",
+        "scripts/ (optional)",
+        "examples/ (optional)",
+        "resources/ (optional)"
+      ],
+      "progressive_disclosure": [
+        {
+          "phase": 1,
+          "name": "Metadata",
+          "loads": "name + description from frontmatter",
+          "when": "session start",
+          "cost": "~100 tokens/skill (GOOGLE)"
+        },
+        {
+          "phase": 2,
+          "name": "Instructions",
+          "loads": "full SKILL.md body",
+          "when": "agent determines relevance",
+          "cost": "<5,000 tokens recommended (GOOGLE)"
+        },
+        {
+          "phase": 3,
+          "name": "Resources",
+          "loads": "scripts/, examples/, resources/",
+          "when": "on demand",
+          "cost": "variable"
+        }
+      ],
+      "activation": "Explicit mention by name ensures use, but is not required",
+      "source": "DOCS",
+      "confidence": "A"
+    },
+    "agents": {
+      "definition": "Reusable persona definitions in Markdown with YAML frontmatter. Define who the agent is, not what to do.",
+      "creation_paths": [
+        {
+          "path": "File-based",
+          "location": ".agents/agents/<name>.md",
+          "persistence": "persistent, discoverable"
+        },
+        {
+          "path": "Tool-based",
+          "tool": "define_subagent",
+          "persistence": "ephemeral, session-scoped"
+        }
+      ],
+      "frontmatter": [
+        {
+          "field": "name",
+          "type": "string",
+          "default": "required",
+          "description": "Unique identifier"
+        },
+        {
+          "field": "description",
+          "type": "string",
+          "default": "required",
+          "description": "Used by planner for delegation"
+        },
+        {
+          "field": "tools",
+          "type": "string[]",
+          "default": "[]",
+          "description": "Permitted tools (e.g. view_file, run_command)"
+        },
+        {
+          "field": "mainAgent",
+          "type": "boolean",
+          "default": "true",
+          "description": "Allow selection as primary agent in chat"
+        },
+        {
+          "field": "subagent",
+          "type": "boolean",
+          "default": "true",
+          "description": "Allow invocation via invoke_subagent"
+        },
+        {
+          "field": "model",
+          "type": "string",
+          "default": "inherit",
+          "enum": [
+            "inherit",
+            "flash",
+            "pro"
+          ]
+        },
+        {
+          "field": "commandExecutionPolicy",
+          "type": "string",
+          "default": "sandbox",
+          "enum": [
+            "off",
+            "auto",
+            "eager",
+            "sandbox"
+          ],
+          "note": "semantics of each value undocumented"
+        },
+        {
+          "field": "mcpServers",
+          "type": "object[]",
+          "default": "[]",
+          "description": "Custom MCP servers for this subagent"
+        },
+        {
+          "field": "skills / plugins",
+          "type": "string[]",
+          "default": "[]",
+          "description": "Skill paths or plugin dependencies"
+        }
+      ],
+      "discovery_locations": [
+        {
+          "location": ".agents/agents/<name>.md or .agents/agents/<name>/agent.md",
+          "scope": "Workspace/Repository"
+        },
+        {
+          "location": "~/.gemini/config/agents/<name>.md or .../agents/<name>/agent.md",
+          "scope": "Global"
+        },
+        {
+          "location": "plugins/<plugin_name>/agents/",
+          "scope": "Bundled plugin package",
+          "note": "confirmed working 2026-08-11 (self-customizer ships agents/self-auditor.md; listed by agy agents)"
+        }
+      ],
+      "built_in": [
+        {
+          "name": "research",
+          "purpose": "Codebase research, file navigation, structural exploration",
+          "invocation": "invoke_subagent"
+        },
+        {
+          "name": "browser",
+          "purpose": "Sandboxed web browser testing",
+          "invocation": "exclusively /browser"
+        },
+        {
+          "name": "self",
+          "purpose": "Clone of calling agent (identical system instructions and toolsets)",
+          "invocation": "invoke_subagent"
+        }
+      ],
+      "lifecycle_states": [
+        {
+          "state": "Running",
+          "behavior": "Actively executing; cancellable (k in CLI) or interruptible by parent"
+        },
+        {
+          "state": "Idle",
+          "behavior": "Task completed, result sent to parent, paused; auto-re-awakens on incoming message; retains context"
+        },
+        {
+          "state": "Killed",
+          "behavior": "Permanently terminated; worktrees cleaned; transcripts remain in JSONL logs"
+        }
+      ],
+      "communication": {
+        "routing": "Unique agent conversation IDs",
+        "topology": "Parent <-> subagent, peer <-> peer (if ID known)",
+        "auto_wake": "Messages to idle subagents trigger re-awakening",
+        "shared_transcripts": "Agents can read each other's transcripts",
+        "nesting_limit": "Maximum 10 levels (strictly enforced)"
+      },
+      "workspace_options": [
+        {
+          "mode": "inherit",
+          "behavior": "Read-only copy of parent workspace"
+        },
+        {
+          "mode": "branch",
+          "behavior": "Isolated Git worktree (read-write, merge-back)"
+        },
+        {
+          "mode": "share",
+          "behavior": "Direct access to parent workspace"
+        }
+      ],
+      "teamwork": {
+        "command": "/teamwork-preview",
+        "availability": "Ultra Plan ($200/mo) only",
+        "status": "Preview",
+        "features": [
+          "Error recovery",
+          "automatic retries",
+          "task coordination"
+        ]
+      },
+      "known_issue": "Misspelled tool names in tools list may cause the subagent to hang. Fix planned (documented).",
+      "source": "DOCS",
+      "confidence": "A"
+    },
+    "plugins": {
+      "definition": "Namespaced bundles grouping skills, rules, MCP servers, and hooks into a single package",
+      "directory_structure": [
+        "plugin.json (required)",
+        "mcp_config.json (optional)",
+        "hooks.json (optional)",
+        "skills/<skill-name>/SKILL.md (optional)",
+        "rules/<rule-name>.md (optional)"
+      ],
+      "manifest": {
+        "name": "optional; defaults to directory name"
+      },
+      "components": [
+        "Skills",
+        "Rules",
+        "MCP Servers",
+        "Hooks",
+        "Agents (verified 2026-08-11)",
+        "Commands (observed in gemini/claude imports)"
+      ],
+      "note": "RESOLVED 2026-08-11: plugins DO support agents/ directories (subagents page correct; plugins page directory structure incomplete \u2014 also omits commands/). Evidence: agy plugin list reports 'agents' component (self-customizer ships agents/self-auditor.md) and agy agents lists self-auditor. Workspace-scoped .agents/plugins/ agents MEASURED 2026-08-11: NOT surfaced on any CLI surface - not listed by `agy agents`, not loaded by headless -p --agent (silent fallback to default agent; marker system prompts never fired), not tracked by `agy plugin list`; interactive TUI /agents DOES list workspace-scoped agents (user-verified 2026-08-11) - discovery is surface-dependent: TUI = global + plugin + workspace; headless/CLI = global + plugin only with silent fallback. Fixture preserved at tests/fixtures/plugin-workspace/.",
+      "manifest_schema": "https://antigravity.google/schemas/v1/plugin.json (official JSON Schema for plugin.json)",
+      "management_commands": [
+        "agy plugin list",
+        "agy plugin import [source] (gemini|claude)",
+        "agy plugin install <target> (plugin@marketplace)",
+        "agy plugin uninstall <name>",
+        "agy plugin enable <name>",
+        "agy plugin disable <name>",
+        "agy plugin validate [path]",
+        "agy plugin link <mp> <target>"
+      ],
+      "discovery_paths": {
+        "workspace": ".agents/plugins/ or _agents/plugins/",
+        "global": "~/.gemini/config/plugins/"
+      },
+      "adding": [
+        {
+          "method": "Bundled (Build with Google)",
+          "description": "Browse from Customizations page"
+        },
+        {
+          "method": "Manual",
+          "description": "Place in workspace or global plugin directories"
+        }
+      ],
+      "native_toggle": "Native disable/enable support confirmed",
+      "source": "DOCS",
+      "confidence": "A"
+    },
+    "mcp": {
+      "definition": "Open standard connecting agents to local dev tools, databases, file parsers, and remote APIs",
+      "config_paths": {
+        "global": "~/.gemini/config/mcp_config.json",
+        "workspace": ".agents/mcp_config.json"
+      },
+      "structure_example": {
+        "mcpServers": {
+          "sqlite-explorer": {
+            "command": "node",
+            "args": [
+              "/usr/local/bin/sqlite-mcp-server.js"
+            ],
+            "env": {
+              "SQLITE_DB_PATH": "/var/data/app.db"
+            }
+          },
+          "my-remote-server": {
+            "serverUrl": "https://api.example.com/mcp/",
+            "headers": {
+              "Authorization": "Bearer YOUR_API_TOKEN"
+            }
+          }
+        }
+      },
+      "transport": [
+        {
+          "property": "command",
+          "type": "string",
+          "transport": "Stdio",
+          "required": "one of command | serverUrl"
+        },
+        {
+          "property": "serverUrl",
+          "type": "string",
+          "transport": "Remote (SSE, Streamable HTTP, websocket)",
+          "required": "one of command | serverUrl"
+        }
+      ],
+      "optional_properties": [
+        {
+          "property": "args",
+          "type": "string[]",
+          "description": "CLI arguments for Stdio"
+        },
+        {
+          "property": "env",
+          "type": "object",
+          "description": "Env vars; supports $VAR, ${VAR}, ${VAR:-default}, %VAR% (Windows)"
+        },
+        {
+          "property": "cwd",
+          "type": "string",
+          "description": "Working directory for Stdio"
+        },
+        {
+          "property": "headers",
+          "type": "object",
+          "description": "Custom HTTP headers for remote servers"
+        },
+        {
+          "property": "authProviderType",
+          "type": "string",
+          "description": "\"google_credentials\" for Google ADC"
+        },
+        {
+          "property": "oauth",
+          "type": "object",
+          "description": "{clientId, clientSecret} for manual OAuth"
+        },
+        {
+          "property": "disabled",
+          "type": "boolean",
+          "description": "Temporarily disable without removing"
+        },
+        {
+          "property": "disabledTools",
+          "type": "string[]",
+          "description": "Withhold specific tools from model"
+        },
+        {
+          "property": "timeout",
+          "type": "number",
+          "description": "Request timeout"
+        }
+      ],
+      "warning": "Legacy fields url and httpUrl are NOT supported in Antigravity CLI; must use serverUrl",
+      "auth_methods": [
+        {
+          "method": "Google Credentials",
+          "config": "authProviderType: google_credentials",
+          "details": "requires gcloud auth application-default login"
+        },
+        {
+          "method": "OAuth (DCR)",
+          "config": "none",
+          "details": "automatic for servers supporting Dynamic Client Registration"
+        },
+        {
+          "method": "OAuth (Manual)",
+          "config": "oauth: {clientId, clientSecret}",
+          "details": "redirect URI https://antigravity.google/oauth-callback"
+        },
+        {
+          "method": "Custom Headers",
+          "config": "headers: {Authorization: Bearer ...}",
+          "details": "API keys or bearer tokens"
+        }
+      ],
+      "oauth_token_storage": "~/.gemini/antigravity/mcp_oauth_tokens.json",
+      "permission_patterns": [
+        {
+          "pattern": "mcp(server/tool)",
+          "scope": "specific tool on specific server"
+        },
+        {
+          "pattern": "mcp(server/*)",
+          "scope": "all tools on specified server"
+        },
+        {
+          "pattern": "mcp(*)",
+          "scope": "any MCP tool across all servers"
+        }
+      ],
+      "default_mode": "Unconfigured MCP tools default to Ask mode",
+      "manager": "/mcp command: status rings, reload configs, inspect logs",
+      "store": "50+ direct integrations (AlloyDB, BigQuery, Bigtable, Chrome DevTools, ClickHouse, Cloud SQL, Dataplex, Figma, Firebase, GitHub, GitLab, GKE, Heroku, Linear, MongoDB, Neon, Netlify, Notion, PayPal, Perplexity, Pinecone, PostHog, Postman, Prisma, Redis, Stripe, Supabase, and more)",
+      "sdk_integration": "Antigravity SDK auto-discovers servers from .agents/mcp_config.json",
+      "source": "DOCS",
+      "confidence": "A"
+    },
+    "rules": {
+      "definition": "Markdown files defining constraints or guidelines for agent behavior",
+      "paths": {
+        "global": "~/.gemini/GEMINI.md",
+        "workspace": ".agents/rules/",
+        "backward_compat": ".agent/rules (singular)"
+      },
+      "size_limit": "12,000 characters per rule file",
+      "activation_modes": [
+        {
+          "mode": "Manual",
+          "behavior": "Activated via @ mention"
+        },
+        {
+          "mode": "Always On",
+          "behavior": "Always applied"
+        },
+        {
+          "mode": "Model Decision",
+          "behavior": "Agent decides based on rule description"
+        },
+        {
+          "mode": "Glob",
+          "behavior": "Applied to files matching a pattern",
+          "note": "glob syntax undocumented"
+        }
+      ],
+      "file_references": "Relative paths resolve from rules file location; absolute paths resolve directly; otherwise relative to repository",
+      "source": "DOCS",
+      "confidence": "A"
+    },
+    "workflows": {
+      "definition": "Markdown files with title, description, and step sequences",
+      "invocation": "/workflow-name",
+      "scope": "Global or Workspace",
+      "composition": "Workflows can call other workflows",
+      "execution": "Sequential",
+      "distinction_from_rules": "Rules = persistent context at prompt level; Workflows = structured sequences at trajectory level",
+      "source": "DOCS",
+      "confidence": "A"
+    },
+    "hooks": {
+      "definition": "Run custom scripts at specific points during the execution loop",
+      "config_paths": {
+        "workspace": ".agents/hooks.json",
+        "global": "~/.gemini/config/hooks.json"
+      },
+      "definition_fields": [
+        {
+          "field": "enabled",
+          "type": "boolean",
+          "default": true,
+          "description": "false disables without removing"
+        },
+        {
+          "field": "PreToolUse",
+          "type": "array",
+          "description": "Before tool execution"
+        },
+        {
+          "field": "PostToolUse",
+          "type": "array",
+          "description": "After tool completion"
+        },
+        {
+          "field": "PreInvocation",
+          "type": "array",
+          "description": "Before model call"
+        },
+        {
+          "field": "PostInvocation",
+          "type": "array",
+          "description": "After model invocation"
+        },
+        {
+          "field": "Stop",
+          "type": "array",
+          "description": "When execution terminates"
+        }
+      ],
+      "matcher_patterns": [
+        {
+          "pattern": "\"\" or \"*\"",
+          "behavior": "Match all tools"
+        },
+        {
+          "pattern": "\"run_command\"",
+          "behavior": "Match exactly"
+        },
+        {
+          "pattern": "\"run_command|view_file\"",
+          "behavior": "Match either"
+        },
+        {
+          "pattern": "\"browser_.*\"",
+          "behavior": "Regex prefix match"
+        }
+      ],
+      "ipc": "JSON stdin/stdout. Non-zero exit from PreToolUse cancels execution.",
+      "note": "Community sources reference AfterAgent/AfterTool event names \u2014 may be aliases for PostInvocation/PostToolUse; discrepancy unresolved",
+      "source": "DOCS",
+      "confidence": "A"
+    }
+  },
+  "sandbox": {
+    "platforms": [
+      {
+        "platform": "Linux",
+        "technology": "nsjail"
+      },
+      {
+        "platform": "macOS",
+        "technology": "sandbox-exec"
+      },
+      {
+        "platform": "Windows",
+        "technology": "AppContainer"
+      }
+    ],
+    "interactive_behavior": "Bypass sandbox for single execution when enabled; force sandbox for single command when disabled",
+    "source": "DOCS",
+    "confidence": "A"
+  },
+  "headless": {
+    "run_flags": [
+      "-p",
+      "--print",
+      "--prompt"
+    ],
+    "flags": [
+      {
+        "flag": "--output-format",
+        "default": "text",
+        "values": [
+          "text",
+          "json",
+          "stream-json"
+        ],
+        "description": "Output format"
+      },
+      {
+        "flag": "--json-schema",
+        "description": "Schema string, .json file path, or primitive type name (string, number, integer, boolean)"
+      },
+      {
+        "flag": "--model",
+        "description": "Model slug for the run (list with agy models)"
+      },
+      {
+        "flag": "--effort",
+        "values": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "description": "Reasoning effort"
+      },
+      {
+        "flag": "--agent",
+        "description": "Agent for the run (list with agy agents)"
+      },
+      {
+        "flag": "--continue",
+        "short": "-c",
+        "default": false,
+        "description": "Continue the most recent conversation"
+      },
+      {
+        "flag": "--conversation",
+        "description": "Resume a conversation by ID"
+      },
+      {
+        "flag": "--dangerously-skip-permissions",
+        "default": false,
+        "description": "Auto-approve all tool permission requests"
+      },
+      {
+        "flag": "--print-timeout",
+        "default": "5m",
+        "description": "Maximum time to wait for a response"
+      },
+      {
+        "flag": "--sandbox",
+        "default": false,
+        "description": "Run with terminal sandbox restrictions enabled"
+      },
+      {
+        "flag": "--add-dir",
+        "default": [],
+        "description": "Add a directory to the workspace (repeatable)"
+      },
+      {
+        "flag": "--disable-slash-commands",
+        "default": false,
+        "description": "Disable slash command and skill expansion in print mode"
+      },
+      {
+        "flag": "--log-file",
+        "description": "Override CLI log file path"
+      },
+      {
+        "flag": "--mode",
+        "values": [
+          "accept-edits",
+          "plan"
+        ],
+        "description": "Agent execution mode for the session"
+      },
+      {
+        "flag": "--prompt-interactive",
+        "short": "-i",
+        "description": "Run an initial prompt interactively and continue the session"
+      }
+    ],
+    "status_enum": [
+      {
+        "status": "SUCCESS",
+        "meaning": "Run completed and produced a response"
+      },
+      {
+        "status": "ERROR",
+        "meaning": "Run ended with an error"
+      },
+      {
+        "status": "CANCELED",
+        "meaning": "Run was canceled"
+      },
+      {
+        "status": "INTERRUPTED",
+        "meaning": "Run was interrupted (e.g. SIGINT)"
+      },
+      {
+        "status": "INVALID",
+        "meaning": "Run reached an invalid state"
+      },
+      {
+        "status": "WAITING",
+        "meaning": "Run ended while waiting on input"
+      },
+      {
+        "status": "RUNNING",
+        "meaning": "Run did not reach a terminal state"
+      }
+    ],
+    "exit_codes": "0 = success; non-zero = no response produced (reason on stderr). Unknown --model exits non-zero with ERROR \u2014 no silent fallback.",
+    "agent_validation_note": "--agent does NOT reject unknown names in headless mode (silent fallback to default agent; verified 2026-08-11). Custom agents, including plugin-shipped ones, are discoverable via agy agents; headless loading of workspace-scoped custom agents MEASURED 2026-08-11: does not occur (fixture plugin agent and plain workspace agent both returned the default reply; markers never fired). Global plugin agents (self-auditor) are the only custom agents confirmed to load (interactive, transcript a1e51ef2). Interactive TUI /agents selector DOES list workspace-scoped agents (user-verified 2026-08-11) - surface-dependent discovery.",
+    "json_envelope": [
+      {
+        "field": "conversation_id",
+        "type": "string",
+        "presence": "always"
+      },
+      {
+        "field": "status",
+        "type": "string",
+        "presence": "always"
+      },
+      {
+        "field": "response",
+        "type": "string",
+        "presence": "always"
+      },
+      {
+        "field": "error",
+        "type": "string",
+        "presence": "failure only"
+      },
+      {
+        "field": "duration_seconds",
+        "type": "number",
+        "presence": "always"
+      },
+      {
+        "field": "num_turns",
+        "type": "number",
+        "presence": "always"
+      },
+      {
+        "field": "structured_output",
+        "type": "object",
+        "presence": "with --json-schema only"
+      },
+      {
+        "field": "json_schema",
+        "type": "object",
+        "presence": "with --json-schema only"
+      },
+      {
+        "field": "usage",
+        "type": "object",
+        "presence": "always",
+        "description": "input_tokens, output_tokens, thinking_tokens, cache_read_tokens, total_tokens"
+      }
+    ],
+    "stream_events": [
+      {
+        "event": "init",
+        "emitted": "once at stream start",
+        "payload": "cwd, tools, permission_mode (request-review default; always-proceed under --dangerously-skip-permissions), optional model/agent/json_schema"
+      },
+      {
+        "event": "step_update",
+        "emitted": "per step transition or text delta",
+        "payload": "conversation_id, step_index, state (ACTIVE/DONE), step_type (user_input/agent_response/tool/checkpoint), tool_name, text_delta, usage, tool_info {name, parameters, output, error{type,message}}, subagent_info {subagents: [{type_name, role, conversation_id, log_uri, workspace_uris}]}"
+      },
+      {
+        "event": "result",
+        "emitted": "once at end (same shape as json)",
+        "payload": "same as json envelope"
+      }
+    ],
+    "permissions_in_headless": "No interactive prompts. Tools requiring approval are soft-denied: run continues, exits 0, stderr notice names the tool. Pre-grant via permissions.allow, or --dangerously-skip-permissions. Workspace reads/writes auto-allowed.",
+    "authentication": "Cached credentials required; non-interactive environments without them get 'authentication required' error",
+    "source": "DOCS",
+    "confidence": "A"
+  },
+  "browser": {
+    "engine": "Local Chrome, separate profile",
+    "isolation": "No cookie/sign-in sharing with personal browsing",
+    "sign_in_persistence": "Persists within isolated profile",
+    "macos": "Separate dock icon if Chrome is open",
+    "disable": "\"Browser Tools\" in User Settings",
+    "security": {
+      "denylist": "Google BadUrlsChecker (server-side; unavailable = deny; cannot override)",
+      "allowlist": "local file, starts with localhost",
+      "precedence": "Denylist always wins"
+    },
+    "invocation": "/browser command (separate rather than auto-invoked \u2014 user feedback showed the agent was not capable enough to decide when to browse)",
+    "source": "DOCS",
+    "confidence": "A"
+  },
+  "artifacts": {
+    "execution_modes": [
+      {
+        "mode": "Planning",
+        "behavior": "Agent plans, produces artifacts, task groups",
+        "cli": "/planning"
+      },
+      {
+        "mode": "Fast",
+        "behavior": "Direct execution",
+        "cli": "/fast"
+      }
+    ],
+    "artifact_types": [
+      "Implementation plans",
+      "code diffs",
+      "architecture diagrams",
+      "images",
+      "browser recordings"
+    ],
+    "controls": "Ctrl+R or /artifact for picker; y/n/Shift+A/Shift+R approval; p preview",
+    "review_policy": [
+      {
+        "policy": "Request Review (Recommended)",
+        "behavior": "Agent halts for approval"
+      },
+      {
+        "policy": "Always Proceed",
+        "behavior": "Never halts"
+      }
+    ],
+    "implementation_plan_workflow": "Generate -> Review (inline comments) -> Proceed or Review -> Agent iterates or implements",
+    "multimodal_feedback": "Screenshots via browser subagent, saved as artifacts, support commenting",
+    "source": "DOCS",
+    "confidence": "A"
+  },
+  "enterprise": {
+    "editions": [
+      "Standard",
+      "Plus",
+      "Pay-as-you-go"
+    ],
+    "authentication": [
+      {
+        "method": "Standard SSO",
+        "details": "Google account"
+      },
+      {
+        "method": "BYOID",
+        "details": "Workforce Identity Federation (Okta, Ping, etc.)"
+      },
+      {
+        "method": "ADC",
+        "details": "gcloud auth application-default login; credentials at ~/.config/gcloud/application_default_credentials.json"
+      }
+    ],
+    "diagnostic_logs": [
+      {
+        "product": "CLI",
+        "path": "~/.gemini/antigravity-cli/cli.log"
+      },
+      {
+        "product": "Desktop",
+        "path": "~/Library/Logs/Antigravity/language_server.log"
+      }
+    ],
+    "regional_endpoints": [
+      {
+        "region": "Global",
+        "features": "full"
+      },
+      {
+        "region": "US",
+        "features": "full"
+      },
+      {
+        "region": "EU",
+        "features": "no Image Generation"
+      }
+    ],
+    "projects": {
+      "default": "default-cli-project",
+      "flags": [
+        "--project=<id>",
+        "--new-project"
+      ],
+      "note": "cross-project /fork supported"
+    },
+    "conversations": "Workspace-scoped; prevents context pollution",
+    "desktop_workflows": {
+      "project_creation": "Multi-folder, cross-repository context support",
+      "agent_startup": "Local Mode (direct in folders) or New Worktree Mode (isolated git worktree)"
+    },
+    "source": "DOCS",
+    "confidence": "A"
+  },
+  "transcript_schema": {
+    "_description": "transcript.jsonl line schema, verified hands-on 2026-08-11 (agy 1.1.11, headless; one run with run_command tool call).",
+    "location": "~/.gemini/antigravity-cli/brain/<conversation_id>/.system_generated/logs/transcript.jsonl",
+    "full_location": "~/.gemini/antigravity-cli/brain/<conversation_id>/.system_generated/logs/transcript_full.jsonl",
+    "fields": [
+      {
+        "field": "step_index",
+        "type": "int",
+        "presence": "always",
+        "description": "Zero-based step order"
+      },
+      {
+        "field": "source",
+        "type": "enum",
+        "presence": "always",
+        "values": [
+          "USER_EXPLICIT",
+          "SYSTEM",
+          "MODEL"
+        ]
+      },
+      {
+        "field": "type",
+        "type": "enum",
+        "presence": "always",
+        "values": [
+          "USER_INPUT",
+          "CONVERSATION_HISTORY",
+          "PLANNER_RESPONSE",
+          "CHECKPOINT",
+          "ERROR_MESSAGE",
+          "VIEW_FILE",
+          "LIST_DIRECTORY",
+          "FIND",
+          "GREP_SEARCH",
+          "RUN_COMMAND",
+          "ASK_QUESTION",
+          "CODE_ACTION",
+          "EPHEMERAL_MESSAGE",
+          "GENERIC",
+          "INVOKE_SUBAGENT",
+          "MCP_TOOL",
+          "READ_URL_CONTENT",
+          "SEARCH_WEB",
+          "SYSTEM_MESSAGE"
+        ],
+        "note": "tool entries use the SCREAMING_SNAKE tool name; 9 further values (ASK_QUESTION, CODE_ACTION, EPHEMERAL_MESSAGE, GENERIC, INVOKE_SUBAGENT, MCP_TOOL, READ_URL_CONTENT, SEARCH_WEB, SYSTEM_MESSAGE) promoted by transcript audit 2026-08-11 (49,586 lines / 33 sessions); per-value source citations in audits/transcript-audit-2026-08-10.json"
+      },
+      {
+        "field": "status",
+        "type": "enum",
+        "presence": "always",
+        "values": [
+          "DONE",
+          "ERROR",
+          "RUNNING"
+        ],
+        "note": "in-progress steps use RUNNING (408x observed); failed steps use ERROR (108x) \u2014 verified by audit 2026-08-11; earlier 'ACTIVE expected' guess superseded"
+      },
+      {
+        "field": "created_at",
+        "type": "string",
+        "presence": "always",
+        "description": "ISO 8601 UTC (YYYY-MM-DDTHH:MM:SSZ)"
+      },
+      {
+        "field": "content",
+        "type": "string",
+        "presence": "optional",
+        "description": "USER_INPUT: prompt wrapped in <USER_REQUEST>/<ADDITIONAL_METADATA>/<USER_SETTINGS_CHANGE>; PLANNER_RESPONSE: model reply; RUN_COMMAND: command output; CHECKPOINT: truncation summary with {{ CHECKPOINT N }} marker"
+      },
+      {
+        "field": "thinking",
+        "type": "string",
+        "presence": "optional",
+        "description": "Model reasoning; observed on PLANNER_RESPONSE"
+      },
+      {
+        "field": "tool_calls",
+        "type": "array",
+        "presence": "optional",
+        "description": "Tools invoked on PLANNER_RESPONSE; each {name, args}; run_command args include CommandLine, Cwd, WaitMsBeforeAsync, toolAction, toolSummary"
+      },
+      {
+        "field": "exit_code",
+        "type": "int",
+        "presence": "optional",
+        "description": "Observed on RUN_COMMAND"
+      }
+    ],
+    "notes": [
+      "created_at field is UTC; tool-output content headers (Created At/Completed At) use local time with offset",
+      "conversation_id is not stored in the file; derive from the directory name",
+      "transcript_full.jsonl stores tool-call args as native JSON; transcript.jsonl stores them escaped",
+      "step_index is not necessarily contiguous \u2014 one PLANNER_RESPONSE may issue multiple tool_calls",
+      "tool args carry metadata fields toolAction and toolSummary alongside tool-specific args (AbsolutePath, DirectoryPath, CommandLine/Cwd/WaitMsBeforeAsync)",
+      "ERROR_MESSAGE entries (source SYSTEM) embed failure text with Guidance and Retries remaining: N; no exit_code",
+      "LIST_DIRECTORY output is JSON-lines: {name, sizeBytes} per entry",
+      "checkpoint entries embed absolute paths to the log files",
+      "headless probe: RUN_COMMAND Cwd was the CLI config dir, not the invocation dir; an interactive run used the correct workspace cwd"
+    ],
+    "source": "DOCS",
+    "confidence": "A"
+  },
+  "known_gaps": {
+    "_description": "Behavioral contracts the official docs leave unanswered \u2014 do not assert these. All entries confidence C unless noted.",
+    "entries": [
+      {
+        "question": "What does commandExecutionPolicy: \"eager\" do vs auto vs sandbox vs off?",
+        "context": "agent frontmatter lists 4 values but defines none"
+      },
+      {
+        "question": "What does artifactReviewPolicy: \"agent-decides\" trigger on?",
+        "context": "listed as valid option in settings"
+      },
+      {
+        "question": "What does runningLightSpeed: \"fast\" change vs medium/slow/off?",
+        "context": "all 4 values listed in settings"
+      },
+      {
+        "question": "What counts as a \"read\" tool for toolPermission: \"strict\"?",
+        "context": "strict prompts for all non-read tools; grep_search/list_dir/search_web classification unclear"
+      },
+      {
+        "question": "What happens when enableTerminalSandbox: true and the OS sandbox technology is unavailable?",
+        "context": "three technologies listed but fallback undocumented"
+      },
+      {
+        "question": "What glob syntax do Rules use in Glob activation mode?",
+        "context": "official docs mention Glob mode"
+      },
+      {
+        "question": "How does model: inherit resolve \u2014 parent's selected model or parent's default?",
+        "context": "agent frontmatter model field"
+      },
+      {
+        "question": "What happens when two workspace skills share the same name?",
+        "context": "workspace > global precedence stated; same-level conflicts not"
+      },
+      {
+        "question": "What is the plugin loading order when multiple plugins define hooks for the same event?",
+        "context": "multiple plugins can include hooks.json"
+      },
+      {
+        "question": "Does a disabled MCP server still appear in /mcp? Still count against startup?",
+        "context": "disabled config field exists"
+      },
+      {
+        "question": "What happens when a hook exceeds its timeout value?",
+        "context": "timeout field documented; behavior on timeout not"
+      },
+      {
+        "question": "What happens when a tools list in agent frontmatter contains a misspelled tool name?",
+        "context": "documented known issue causing hang; no validation fallback described"
+      },
+      {
+        "question": "What is the MCP server connection failure behavior? Does the session fail or degrade gracefully?",
+        "context": "not addressed"
+      },
+      {
+        "question": "Can a Running subagent transition directly to Killed, or must it pass through Idle?",
+        "context": "three states documented; transition rules not"
+      },
+      {
+        "question": "What happens when mainAgent: false and subagent: false?",
+        "context": "both fields documented; agent unusable? hidden?"
+      },
+      {
+        "question": "What specific network restrictions does each sandbox technology impose?",
+        "context": "nsjail/sandbox-exec/AppContainer named; restrictions not"
+      },
+      {
+        "question": "What filesystem restrictions does each sandbox impose?",
+        "context": "same as above"
+      },
+      {
+        "question": "Is sandbox behavior identical across all three platforms?",
+        "context": "three different technologies"
+      },
+      {
+        "question": "What happens when a permission rule matches multiple lists with conflicting actions?",
+        "context": "Deny > Ask > Allow stated; glob edge cases undocumented"
+      },
+      {
+        "question": "How do cross-platform path normalizations handle symlinks?",
+        "context": "normalization confirmed; symlink handling not"
+      }
+    ]
+  },
+  "hard_gaps": {
+    "_description": "Previously-open gaps. All five verified 2026-08-11; all resolved. Track any future gaps here.",
+    "entries": [
+      {
+        "gap": "transcript.jsonl field-level schema",
+        "status": "RESOLVED 2026-08-11 (hands-on) \u2014 see transcript_schema",
+        "resolution": "live agy 1.1.11 sessions; inspected brain directory"
+      },
+      {
+        "gap": "Headless mode status enum values",
+        "status": "RESOLVED 2026-08-11 \u2014 SUCCESS, ERROR, CANCELED, INTERRUPTED, INVALID, WAITING, RUNNING",
+        "resolution": "live docs re-retrieval"
+      },
+      {
+        "gap": "general.defaultApprovalMode enum values",
+        "status": "RESOLVED 2026-08-11 \u2014 default, auto_edit, plan (default: default); docs relocated to geminicli.com",
+        "resolution": "live docs re-retrieval"
+      },
+      {
+        "gap": "Plugin agents/ subdirectory",
+        "status": "Global path RESOLVED 2026-08-11: plugins support agents/ (+ commands); agy plugin list reports the component, agy agents lists self-auditor, transcript proves execution. Workspace-scoped .agents/plugins/ MEASURED 2026-08-11: NOT surfaced - not listed by agy agents, not loaded headlessly (silent fallback), not tracked by agy plugin list. Interactive TUI /agents DOES list workspace agents (user-verified 2026-08-11); only the headless/CLI surfaces ignore them (silent fallback).",
+        "resolution": "agy plugin list + agy agents + on-disk inspection",
+        "confidence": "A"
+      },
+      {
+        "gap": "CLI brain directory path",
+        "status": "RESOLVED 2026-08-11 (hands-on) \u2014 ~/.gemini/antigravity-cli/brain/<conversation_id>/; docs statusline example (~/.gemini/antigravity/brain/) is stale",
+        "resolution": "live session inspection"
+      }
+    ]
+  }
+}

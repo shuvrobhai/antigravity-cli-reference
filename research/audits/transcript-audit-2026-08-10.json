@@ -1,0 +1,72 @@
+{
+  "brain_dir": "/Users/rayhanislamshuvro/.gemini/antigravity-cli/brain",
+  "documented_enums": {
+    "source": [
+      "MODEL",
+      "SYSTEM",
+      "USER_EXPLICIT"
+    ],
+    "status": [
+      "DONE",
+      "ERROR",
+      "RUNNING"
+    ],
+    "type": [
+      "ASK_QUESTION",
+      "CHECKPOINT",
+      "CODE_ACTION",
+      "CONVERSATION_HISTORY",
+      "EPHEMERAL_MESSAGE",
+      "ERROR_MESSAGE",
+      "FIND",
+      "GENERIC",
+      "GREP_SEARCH",
+      "INVOKE_SUBAGENT",
+      "LIST_DIRECTORY",
+      "MCP_TOOL",
+      "PLANNER_RESPONSE",
+      "READ_URL_CONTENT",
+      "RUN_COMMAND",
+      "SEARCH_WEB",
+      "SYSTEM_MESSAGE",
+      "USER_INPUT",
+      "VIEW_FILE"
+    ]
+  },
+  "generated_at": "2026-08-10T21:23:14Z",
+  "histograms": {
+    "source": {
+      "MODEL": 42789,
+      "SYSTEM": 3588,
+      "USER_EXPLICIT": 3209
+    },
+    "status": {
+      "DONE": 49070,
+      "ERROR": 108,
+      "RUNNING": 408
+    },
+    "type": {
+      "ASK_QUESTION": 225,
+      "CHECKPOINT": 607,
+      "CODE_ACTION": 3756,
+      "CONVERSATION_HISTORY": 620,
+      "EPHEMERAL_MESSAGE": 1429,
+      "ERROR_MESSAGE": 322,
+      "FIND": 40,
+      "GENERIC": 635,
+      "GREP_SEARCH": 897,
+      "INVOKE_SUBAGENT": 79,
+      "LIST_DIRECTORY": 3018,
+      "MCP_TOOL": 14,
+      "PLANNER_RESPONSE": 23125,
+      "READ_URL_CONTENT": 53,
+      "RUN_COMMAND": 4365,
+      "SEARCH_WEB": 311,
+      "SYSTEM_MESSAGE": 610,
+      "USER_INPUT": 3209,
+      "VIEW_FILE": 6271
+    }
+  },
+  "new_values": {},
+  "transcript_lines": 49586
+}

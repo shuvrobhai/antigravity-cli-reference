@@ -1,0 +1,7 @@
+{
+  "altScreenMode": "sometimes",
+  "enableTelemetry": "yes",
+  "toolPermission": "always",
+  "verbosity": "chatty",
+  "editorMode": "emacs"
+}

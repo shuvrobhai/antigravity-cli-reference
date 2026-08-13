@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "legacy-server": {
+      "url": "http://old.example.com/mcp/",
+      "httpUrl": "http://old2.example.com/mcp/"
+    },
+    "no-transport": {
+      "args": ["--flag"]
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "sqlite-explorer": {
+      "command": "node",
+      "args": ["/usr/local/bin/sqlite-mcp-server.js"],
+      "env": { "SQLITE_DB_PATH": "/var/data/app.db" },
+      "cwd": "/var/data",
+      "disabled": false
+    },
+    "my-remote-server": {
+      "serverUrl": "https://api.example.com/mcp/",
+      "headers": { "Authorization": "Bearer YOUR_API_TOKEN" },
+      "timeout": 30,
+      "disabledTools": ["tool_a"]
+    }
+  }
+}

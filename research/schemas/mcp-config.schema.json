@@ -1,0 +1,93 @@
+{
+  "$id": "mcp-config.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": true,
+  "definitions": {
+    "server": {
+      "additionalProperties": true,
+      "oneOf": [
+        {
+          "required": [
+            "command"
+          ]
+        },
+        {
+          "required": [
+            "serverUrl"
+          ]
+        }
+      ],
+      "properties": {
+        "args": {
+          "description": "CLI arguments for Stdio",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "authProviderType": {
+          "description": "\"google_credentials\" for Google ADC",
+          "type": "string"
+        },
+        "command": {
+          "type": "string"
+        },
+        "cwd": {
+          "description": "Working directory for Stdio",
+          "type": "string"
+        },
+        "disabled": {
+          "description": "Temporarily disable without removing",
+          "type": "boolean"
+        },
+        "disabledTools": {
+          "description": "Withhold specific tools from model",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "env": {
+          "additionalProperties": true,
+          "description": "Env vars; supports $VAR, ${VAR}, ${VAR:-default}, %VAR% (Windows)",
+          "type": "object"
+        },
+        "headers": {
+          "additionalProperties": true,
+          "description": "Custom HTTP headers for remote servers",
+          "type": "object"
+        },
+        "httpUrl": false,
+        "oauth": {
+          "additionalProperties": true,
+          "description": "{clientId, clientSecret} for manual OAuth",
+          "type": "object"
+        },
+        "serverUrl": {
+          "type": "string"
+        },
+        "timeout": {
+          "description": "Request timeout",
+          "type": "number"
+        },
+        "url": false
+      },
+      "type": "object"
+    }
+  },
+  "description": "Projection of the documented MCP server surface (extensibility.mcp in the knowledge file). Legacy url/httpUrl fields are rejected: Antigravity CLI requires serverUrl. A server must configure exactly one transport: command (Stdio) or serverUrl (Remote).",
+  "properties": {
+    "mcpServers": {
+      "additionalProperties": {
+        "$ref": "#/definitions/server"
+      },
+      "description": "Server name -> server configuration",
+      "type": "object"
+    }
+  },
+  "required": [
+    "mcpServers"
+  ],
+  "title": "Antigravity CLI mcp_config.json",
+  "type": "object"
+}

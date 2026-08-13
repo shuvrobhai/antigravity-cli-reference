@@ -1,0 +1,33 @@
+{
+  "altScreenMode": "never",
+  "artifactReviewPolicy": "asks-for-review",
+  "colorScheme": "tokyo night",
+  "editor": "vim",
+  "editorMode": "vim",
+  "enableTelemetry": true,
+  "enableTerminalSandbox": false,
+  "model": "Gemini 3.5 Flash (Low)",
+  "notifications": false,
+  "runningLightSpeed": "medium",
+  "showTips": true,
+  "toolPermission": "proceed-in-sandbox",
+  "verbosity": "high",
+  "vimInsertFirst": true,
+  "permissions": {
+    "allow": ["command(git)", "read_file"],
+    "ask": ["command(npm)"],
+    "deny": ["command(rm)"]
+  },
+  "general": {
+    "preferredEditor": "cursor",
+    "vimMode": true,
+    "openEditorInNewWindow": false
+  },
+  "ui": {
+    "language": "us",
+    "footer": { "items": ["model-name", "token-count"] }
+  },
+  "trustedWorkspaces": ["/path/to/workspace"],
+  "statusLine": { "type": "command", "command": "/path/to/status.sh", "padding": 0, "enabled": true },
+  "title": { "type": "command", "command": "/path/to/title.sh" }
+}

@@ -1,0 +1,14 @@
+{
+  "toolPermission": "request-review",
+  "fabricatedSetting": true,
+  "permissions": {
+    "allow": ["command(git status)"],
+    "inventedScope": ["read_file(*)"]
+  },
+  "ui": {
+    "footer": {
+      "items": ["model-name"],
+      "padding": 2
+    }
+  }
+}
